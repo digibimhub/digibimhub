@@ -1,53 +1,165 @@
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import Link from 'next/link'
+import StatsStrip from '@/components/StatsStrip'
+import {
+  customDevelopmentIdealFor,
+  customDevelopmentIntro,
+  customDevelopmentServices,
+  revitAddons,
+} from '@/lib/software-solutions'
 
-const addons = [
-  { name: 'MEP Connector Tool', features: ['Auto-connect pipes', 'Smart junctions', 'Coordination'], revit: '2022-2025' },
-  { name: 'Clash Detector', features: ['Real-time detection', 'Auto reports', 'Warnings'], revit: '2022-2025' },
-  { name: 'Schedule Exporter', features: ['Export to Excel', 'Custom filters', 'Batch process'], revit: '2022-2025' },
-  { name: 'Model Organizer', features: ['Auto-organize', 'Naming conventions', 'Bulk updates'], revit: '2022-2025' },
-  { name: 'View Generator', features: ['Auto-create views', 'Custom sets', 'Sheet automation'], revit: '2022-2025' },
-  { name: 'Annotation Tool', features: ['Smart annotations', 'Dimensions', 'Formatting'], revit: '2022-2025' },
-  { name: 'Family Manager', features: ['Organize families', 'Batch editor', 'Type catalogs'], revit: '2022-2025' },
-  { name: 'Report Generator', features: ['PDF reports', 'Templates', 'Bulk generation'], revit: '2022-2025' },
-]
+const statItems = [
+  { value: '6', label: 'Add-ons', sub: 'Automation & BIM tools' },
+  { value: 'API', label: 'Custom dev', sub: 'Revit API & plugins' },
+  { value: 'Revit', label: 'Platform', sub: 'Autodesk Revit' },
+  { value: 'BOQ', label: 'Data', sub: 'Excel · ERP · cloud' },
+] as const
 
 export default function Software() {
   return (
     <>
       <Navbar />
-      <div className="section-padding bg-white">
-        <div className="container-max">
-          <div className="text-center mb-12">
-            <h1 className="heading-lg mb-4">Revit Add-ons for Windows</h1>
-            <p className="text-xl text-gray-600">Professional tools to boost your productivity</p>
-          </div>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-            {addons.map((addon, idx) => (
-              <div key={idx} className="bg-gray-50 p-6 rounded-lg border border-gray-200 hover:shadow-lg transition-shadow">
-                <h3 className="font-bold mb-3">{addon.name}</h3>
-                <ul className="space-y-2 mb-4 text-sm text-gray-700">
-                  {addon.features.map((feature, i) => (
-                    <li key={i}>• {feature}</li>
-                  ))}
-                </ul>
-                <p className="text-xs text-gray-600 mb-4">Revit {addon.revit}</p>
-                <div className="flex gap-2">
-                  <button className="flex-1 btn-primary text-sm py-2">DOWNLOAD</button>
-                  <button className="flex-1 btn-secondary text-sm py-2">DEMO</button>
-                </div>
-              </div>
-            ))}
-          </div>
-
-          <div className="bg-brand-50 p-12 rounded-lg text-center">
-            <h2 className="heading-sm mb-4">Custom Development</h2>
-            <p className="text-gray-700 mb-6">We develop custom Revit add-ons for your specific needs</p>
-            <button className="btn-primary">REQUEST CUSTOM DEVELOPMENT</button>
+      <section className="relative overflow-hidden bg-navy pb-8 pt-12 text-white sm:pt-14">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(229,180,73,0.1),transparent_55%)]" />
+        <div className="container-max relative text-center">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Products · BIM tools · Automation</p>
+          <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">
+            Autodesk Revit add-ons & custom development
+          </h1>
+          <p className="mx-auto mt-4 max-w-3xl text-sm leading-relaxed text-white/85 sm:text-base">
+            Ready-to-adapt add-ons for sheets, quantities, coordination, families, model health, and 4D progress — plus
+            full custom Revit API solutions for your standards and integrations. Scope, versions, and licensing are
+            confirmed on enquiry; we do not quote fees on this site.
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            <Link href="/contact" className="btn-primary">
+              Discuss a product or build
+            </Link>
+            <a
+              href="https://wa.me/919025271848"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+            >
+              WhatsApp
+            </a>
           </div>
         </div>
-      </div>
+      </section>
+
+      <StatsStrip items={statItems} />
+
+      <main className="section-padding bg-white">
+        <div className="container-max">
+          <div className="section-head mx-auto mb-10 max-w-3xl text-center">
+            <p className="label-gold">Add-ons</p>
+            <h2 className="heading-md mt-2">Automation solutions for Revit</h2>
+            <p className="section-head-line" aria-hidden />
+            <p className="mt-4 text-sm text-navy/75">
+              Each card summarizes the add-on: what it does, key features, and benefits. We can tailor behavior to your
+              office standards after a short discovery call.
+            </p>
+          </div>
+
+          <ul className="grid gap-8 lg:grid-cols-2">
+            {revitAddons.map((addon, index) => (
+              <li key={addon.title} className="card-course-bti flex flex-col p-7">
+                <span className="text-xs font-bold uppercase tracking-wider text-navy/50">Add-on {index + 1}</span>
+                <h2 className="mt-2 text-xl font-bold leading-snug text-navy">{addon.title}</h2>
+                <p className="mt-3 text-sm leading-relaxed text-navy/80">{addon.overview}</p>
+
+                <div className="mt-6 grid gap-6 sm:grid-cols-2">
+                  <div>
+                    <h3 className="text-xs font-bold uppercase tracking-wide text-gold">Features</h3>
+                    <ul className="mt-3 space-y-2 text-sm text-navy/80">
+                      {addon.features.map((f) => (
+                        <li key={f} className="flex gap-2">
+                          <span className="font-bold text-gold">✓</span>
+                          <span>{f}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h3 className="text-xs font-bold uppercase tracking-wide text-gold">Benefits</h3>
+                    <ul className="mt-3 space-y-2 text-sm text-navy/80">
+                      {addon.benefits.map((b) => (
+                        <li key={b} className="flex gap-2">
+                          <span className="text-gold">•</span>
+                          <span>{b}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </main>
+
+      <section className="section-padding bg-[#f0f2f7]">
+        <div className="container-max">
+          <div className="section-head mx-auto mb-10 max-w-3xl text-center">
+            <p className="label-gold">Custom development services</p>
+            <h2 className="heading-md mt-2">Custom Revit add-on development</h2>
+            <p className="section-head-line" aria-hidden />
+            <p className="mt-4 text-sm leading-relaxed text-navy/75">{customDevelopmentIntro}</p>
+          </div>
+
+          <div className="mx-auto grid max-w-5xl gap-6 lg:grid-cols-2">
+            <div className="card-course-bti p-7">
+              <h3 className="text-lg font-bold text-navy">Services include</h3>
+              <ul className="mt-4 space-y-2.5 text-sm text-navy/85">
+                {customDevelopmentServices.map((s) => (
+                  <li key={s} className="flex gap-2">
+                    <span className="font-bold text-gold">✓</span>
+                    <span>{s}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div className="card-course-bti p-7">
+              <h3 className="text-lg font-bold text-navy">Ideal for</h3>
+              <ul className="mt-4 grid gap-2 sm:grid-cols-2">
+                {customDevelopmentIdealFor.map((org) => (
+                  <li
+                    key={org}
+                    className="rounded-xl border border-navy/10 bg-white px-3 py-2.5 text-center text-sm font-semibold text-navy"
+                  >
+                    {org}
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="band-cta-navy">
+        <div className="container-max text-center">
+          <h2 className="text-xl font-bold sm:text-2xl">Need a demo or a custom build?</h2>
+          <p className="mx-auto mt-2 max-w-lg text-sm text-white/75">
+            Describe your workflow, sample models, and integrations — we&apos;ll propose an add-on or a development
+            roadmap.
+          </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <Link href="/contact" className="btn-primary">
+              Contact us
+            </Link>
+            <a
+              href="https://wa.me/919025271848"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+            >
+              WhatsApp
+            </a>
+          </div>
+        </div>
+      </section>
+
       <Footer />
     </>
   )

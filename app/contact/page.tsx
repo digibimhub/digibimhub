@@ -2,6 +2,7 @@
 
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import LeadershipPanel from '@/components/LeadershipPanel'
 import { useState } from 'react'
 
 export default function Contact() {
@@ -9,70 +10,96 @@ export default function Contact() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
-    alert('Thank you for your message. We\'ll contact you soon!')
+    alert("Thanks — we'll get back to you shortly.")
     setFormData({ name: '', email: '', phone: '', message: '' })
   }
 
   return (
     <>
       <Navbar />
-      <div className="section-padding bg-white">
-        <div className="container-max max-w-2xl">
-          <div className="text-center mb-12">
-            <h1 className="heading-lg mb-4">Get in Touch</h1>
-            <p className="text-gray-600">We'd love to hear from you. Send us a message!</p>
-          </div>
+      <main className="section-padding bg-white">
+        <div className="container-max max-w-xl">
+          <h1 className="heading-lg mb-2">Contact us</h1>
+          <p className="mb-8 text-gray-600 text-sm">Message us about training, software, or placement support.</p>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
-            <div>
-              <label className="block font-semibold mb-2">Name</label>
+          <LeadershipPanel variant="card" className="mb-8" />
+
+          <form onSubmit={handleSubmit} className="space-y-4">
+            <label className="block text-sm font-medium text-gray-900">
+              Name
               <input
                 type="text"
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-600"
+                value={formData.name}
+                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none"
                 onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               />
-            </div>
-            <div>
-              <label className="block font-semibold mb-2">Email</label>
+            </label>
+            <label className="block text-sm font-medium text-gray-900">
+              Email
               <input
                 type="email"
                 required
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-600"
+                value={formData.email}
+                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none"
                 onChange={(e) => setFormData({ ...formData, email: e.target.value })}
               />
-            </div>
-            <div>
-              <label className="block font-semibold mb-2">Phone</label>
+            </label>
+            <label className="block text-sm font-medium text-gray-900">
+              Phone
               <input
                 type="tel"
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-600"
+                value={formData.phone}
+                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none"
                 onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
               />
-            </div>
-            <div>
-              <label className="block font-semibold mb-2">Message</label>
+            </label>
+            <label className="block text-sm font-medium text-gray-900">
+              Message
               <textarea
-                rows={5}
-                className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-brand-600"
+                rows={4}
+                value={formData.message}
+                className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none"
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
               />
-            </div>
-            <button type="submit" className="w-full btn-primary">SEND MESSAGE</button>
+            </label>
+            <button type="submit" className="btn-primary w-full sm:w-auto">
+              Send
+            </button>
           </form>
 
-          <div className="mt-12 pt-12 border-t grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="font-bold mb-2">WhatsApp</h3>
-              <p className="text-gray-600">+91 85915 56811</p>
-            </div>
-            <div>
-              <h3 className="font-bold mb-2">Email</h3>
-              <p className="text-gray-600">domesticsoundlines@gmail.com</p>
-            </div>
+          <div className="mt-10 border-t border-gray-200 pt-8 text-sm text-gray-600">
+            <p className="font-semibold text-gray-900">DIGIBIM HUB PRIVATE LIMITED</p>
+            <address className="mt-3 not-italic leading-relaxed">
+              10B/3, Gandhi Nagar 10th Street
+              <br />
+              Tiruvannamalai, Tamil Nadu 606601
+              <br />
+              India
+            </address>
+            <p className="mt-4">
+              <a href="mailto:info@digibimhub.com" className="text-brand-600 hover:underline">
+                info@digibimhub.com
+              </a>
+            </p>
+            <p className="mt-2">
+              Phone & WhatsApp:{' '}
+              <a href="tel:+919025271848" className="text-brand-600 hover:underline">
+                +91 90252 71848
+              </a>
+              {' · '}
+              <a
+                href="https://wa.me/919025271848"
+                className="text-brand-600 hover:underline"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                WhatsApp chat
+              </a>
+            </p>
           </div>
         </div>
-      </div>
+      </main>
       <Footer />
     </>
   )

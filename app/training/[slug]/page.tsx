@@ -1,132 +1,167 @@
+import { notFound } from 'next/navigation'
+import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
+import StatsStrip from '@/components/StatsStrip'
+import { COURSES, getCourse } from '@/lib/courses'
 
-const courseData: Record<string, any> = {
-  'junior-bim-modeler': {
-    title: 'Junior BIM Modeler',
-    color: 'bg-green-500',
-    level: 'Level 1 • Fresher',
-    duration: '4 months',
-    price: '₹15,000',
-    placement: '75%',
-    salary: '6-8 LPA',
-    whoShouldEnroll: [
-      'Freshers with Diploma/Degree',
-      'Career changers to BIM',
-      'Building enthusiasts',
-      'Want to learn from basics',
-      'Interested in MEP systems',
-    ],
-    whatYouLearn: [
-      'Revit fundamentals & UI',
-      'Building modeling basics',
-      'MEP components & systems',
-      'Basic coordination',
-      'Industry standards & practices',
-    ],
-    timeline: [
-      {
-        phase: 'Phase 1 (Months 1-2)',
-        title: 'Foundations',
-        items: ['Revit Basics', 'Interface & Tools', 'Basic Modeling'],
-      },
-      {
-        phase: 'Phase 2 (Months 3)',
-        title: 'Intermediate Skills',
-        items: ['MEP Systems', 'Family Creation', 'Coordination Basics'],
-      },
-      {
-        phase: 'Phase 3 (Months 4)',
-        title: 'Advanced Concepts',
-        items: ['Real Projects', 'Industry Practices', 'Documentation'],
-      },
-    ],
-  },
+export function generateStaticParams() {
+  return COURSES.map((c) => ({ slug: c.slug }))
 }
 
-export default function CoursePage({ params }: { params: { slug: string } }) {
-  const course = courseData[params.slug] || courseData['junior-bim-modeler']
+type Props = { params: Promise<{ slug: string }> }
+
+export default async function CoursePage({ params }: Props) {
+  const { slug } = await params
+  const course = getCourse(slug)
+  if (!course) notFound()
+
+  const statItems = [
+    { value: String(course.topics.length), label: 'Topics', sub: 'In syllabus' },
+    { value: String(course.level), label: 'Course', sub: `of ${COURSES.length}` },
+    { value: course.focus, label: 'Level', sub: 'Suggested focus' },
+    { value: '—', label: 'Stack', sub: course.stack },
+  ] as const
 
   return (
     <>
       <Navbar />
-      <div className={`${course.color} text-white section-padding`}>
-        <div className="container-max">
-          <h1 className="heading-lg mb-4">{course.title}</h1>
-          <p className="text-xl mb-6 opacity-90">{course.level}</p>
-          <div className="grid md:grid-cols-4 gap-6 text-sm">
-            <div>
-              <p className="opacity-75">Duration</p>
-              <p className="font-semibold">{course.duration}</p>
-            </div>
-            <div>
-              <p className="opacity-75">Price</p>
-              <p className="font-semibold">{course.price}</p>
-            </div>
-            <div>
-              <p className="opacity-75">Placement Rate</p>
-              <p className="font-semibold">{course.placement}</p>
-            </div>
-            <div>
-              <p className="opacity-75">Avg Salary</p>
-              <p className="font-semibold">{course.salary}</p>
-            </div>
+      <section className="relative overflow-hidden bg-navy pb-6 pt-10 text-white sm:pt-12">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(229,180,73,0.1),transparent_50%)]" />
+        <div className="container-max relative max-w-4xl">
+          <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">{course.levelLabel}</p>
+          <h1 className="mt-2 text-2xl font-extrabold leading-tight sm:text-3xl md:text-4xl">{course.title}</h1>
+          <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">{course.tagline}</p>
+          <div className="mt-6 flex flex-wrap gap-3">
+            <Link href="/contact" className="btn-primary">
+              Enquire / enroll
+            </Link>
+            <Link href="/training" className="btn-secondary">
+              All courses
+            </Link>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div className="section-padding bg-gray-50">
-        <div className="container-max">
-          <div className="grid md:grid-cols-2 gap-12 mb-16">
-            <div>
-              <h2 className="heading-sm mb-6">Who Should Enroll</h2>
-              <ul className="space-y-3">
-                {course.whoShouldEnroll?.map((item: string, idx: number) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <span className="text-brand-600 font-bold">✓</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h2 className="heading-sm mb-6">What You'll Learn</h2>
-              <ul className="space-y-3">
-                {course.whatYouLearn?.map((item: string, idx: number) => (
-                  <li key={idx} className="flex items-start gap-3">
-                    <span className="text-brand-600 font-bold">✓</span>
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
+      <StatsStrip items={statItems} />
+
+      <main className="section-padding bg-white">
+        <div className="container-max max-w-6xl space-y-10">
+          <div className="section-head mx-auto mb-2 max-w-3xl text-center">
+            <p className="label-gold">Course detail</p>
+            <h2 className="heading-md mt-2">Curriculum overview</h2>
+            <p className="section-head-line" aria-hidden />
           </div>
 
-          <div>
-            <h2 className="heading-sm mb-8">Course Timeline</h2>
-            <div className="grid md:grid-cols-3 gap-6">
-              {course.timeline?.map((phase: any, idx: number) => (
-                <div key={idx} className="bg-white p-6 rounded-lg">
-                  <p className="text-sm text-gray-600 mb-2">{phase.phase}</p>
-                  <h3 className="font-bold mb-4">{phase.title}</h3>
-                  <ul className="space-y-2">
-                    {phase.items.map((item: string, i: number) => (
-                      <li key={i} className="text-sm text-gray-700">• {item}</li>
+          <div className="grid gap-6 lg:grid-cols-2">
+            <section className="card-course-bti p-7">
+              <h2 className="text-lg font-bold text-navy">Ideal for</h2>
+              <p className="mt-4 text-sm leading-relaxed text-navy/85">{course.idealFor}</p>
+            </section>
+            <section className="card-course-bti p-7">
+              <h2 className="text-lg font-bold text-navy">Course overview</h2>
+              <p className="mt-4 text-sm leading-relaxed text-navy/85">{course.overview}</p>
+            </section>
+          </div>
+
+          <section className="card-course-bti p-7">
+            <h2 className="text-lg font-bold text-navy">Topics covered</h2>
+            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+              {course.topics.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-2 rounded-xl border border-navy/10 bg-[#f7f8fb] px-4 py-3 text-sm leading-relaxed text-navy/85"
+                >
+                  <span className="font-bold text-gold">✓</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="card-course-bti p-7">
+            <h2 className="text-lg font-bold text-navy">Outcomes</h2>
+            <ul className="mt-5 grid gap-3 sm:grid-cols-2">
+              {course.outcomes.map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-2 rounded-xl border border-navy/10 bg-[#f7f8fb] px-4 py-3 text-sm leading-relaxed text-navy/85"
+                >
+                  <span className="text-gold">•</span>
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section>
+            <div className="section-head mb-8 text-center">
+              <p className="label-gold">Learning path</p>
+              <h2 className="heading-md mt-2">Learning path overview</h2>
+              <p className="section-head-line mx-auto" aria-hidden />
+            </div>
+            <ul className="grid gap-6 md:grid-cols-3">
+              {course.timeline.map((phase, idx) => (
+                <li key={phase.title} className="card-course-bti flex flex-col p-7">
+                  <span className="flex h-11 w-11 items-center justify-center rounded-full bg-navy text-base font-bold text-gold">
+                    {idx + 1}
+                  </span>
+                  <p className="label-gold mt-5">{phase.phase}</p>
+                  <h3 className="mt-1 text-lg font-bold text-navy">{phase.title}</h3>
+                  <ul className="mt-4 flex-1 space-y-2 text-sm text-navy/75">
+                    {phase.items.map((x) => (
+                      <li key={x} className="flex gap-2">
+                        <span className="text-gold">–</span>
+                        <span>{x}</span>
+                      </li>
                     ))}
                   </ul>
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
+          </section>
+
+          <div className="rounded-2xl border border-navy/10 bg-[#f0f2f7] p-6 text-center text-sm leading-relaxed text-navy/80">
+            {course.placement}. Fees are not published on this site — see{' '}
+            <Link href="/consultancy" className="font-semibold text-gold underline-offset-2 hover:underline">
+              placement support
+            </Link>{' '}
+            and{' '}
+            <Link href="/contact" className="font-semibold text-gold underline-offset-2 hover:underline">
+              contact
+            </Link>{' '}
+            to discuss intake.
+          </div>
+
+          <div className="flex flex-wrap justify-center gap-3 pb-4">
+            <Link href="/contact" className="btn-primary">
+              Enquire / enroll
+            </Link>
+            <a
+              href="https://wa.me/919025271848"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary-on-light"
+            >
+              WhatsApp
+            </a>
           </div>
         </div>
-      </div>
+      </main>
 
-      <div className="section-padding bg-white">
-        <div className="container-max text-center">
-          <h2 className="heading-sm mb-8">Ready to Start?</h2>
-          <button className="btn-primary">ENROLL NOW</button>
+      <section className="band-cta-navy">
+        <div className="container-max">
+          <h2 className="text-xl font-bold">Still not sure about the course?</h2>
+          <p className="mx-auto mt-2 max-w-lg text-sm text-white/75">
+            Tell us your background and goals — we&apos;ll help you pick the right course among the six tracks.
+          </p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <Link href="/contact" className="btn-primary">
+              Talk to us
+            </Link>
+          </div>
         </div>
-      </div>
+      </section>
 
       <Footer />
     </>

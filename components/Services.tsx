@@ -1,32 +1,39 @@
-export default function Services() {
-  const services = [
-    {
-      icon: '📚',
-      title: 'Training',
-      description: '5 Specialized BIM Courses from Fresher to Manager',
-    },
-    {
-      icon: '💻',
-      title: 'Add-ons',
-      description: 'Revit Tools & Extensions for Windows',
-    },
-    {
-      icon: '🎯',
-      title: 'Placement',
-      description: 'Career Guidance & Job Placement Support',
-    },
-  ]
+import Link from 'next/link'
 
+const items = [
+  {
+    href: '/training',
+    title: 'Training',
+    text: 'Six BIM courses from foundations through advanced — architecture, structure, MEP, coordination, and delivery.',
+  },
+  {
+    href: '/software',
+    title: 'Software solutions',
+    text: 'Six Revit add-ons plus custom API development — sheets, QTO, coordination, families, audits, 4D, and integrations.',
+  },
+  {
+    href: '/consultancy',
+    title: 'Placement support',
+    text: 'Resume, portfolio, interviews, job updates, and career roadmaps — alongside training, not a job guarantee.',
+  },
+] as const
+
+export default function Services() {
   return (
-    <section className="section-padding bg-gray-50">
+    <section className="section-padding bg-white">
       <div className="container-max">
-        <div className="grid md:grid-cols-3 gap-8">
-          {services.map((service, idx) => (
-            <div key={idx} className="bg-white p-8 rounded-lg shadow-sm hover:shadow-md transition-shadow">
-              <div className="text-4xl mb-4">{service.icon}</div>
-              <h3 className="heading-sm mb-2">{service.title}</h3>
-              <p className="text-gray-600">{service.description}</p>
-            </div>
+        <div className="section-head mx-auto mb-10 max-w-2xl text-center">
+          <p className="label-gold">Explore</p>
+          <h2 className="heading-md mt-2">Three ways we work with you</h2>
+          <p className="section-head-line" aria-hidden />
+        </div>
+        <div className="grid gap-6 md:grid-cols-3">
+          {items.map(({ href, title, text }) => (
+            <Link key={href} href={href} className="card-course-bti flex flex-col p-7">
+              <h2 className="text-xl font-bold text-navy">{title}</h2>
+              <p className="mt-3 flex-1 text-sm leading-relaxed text-navy/75">{text}</p>
+              <span className="mt-6 text-sm font-semibold text-gold">Learn more →</span>
+            </Link>
           ))}
         </div>
       </div>
