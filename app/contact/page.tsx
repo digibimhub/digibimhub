@@ -2,7 +2,6 @@
 
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
-import LeadershipPanel from '@/components/LeadershipPanel'
 import { useState } from 'react'
 
 export default function Contact() {
@@ -21,8 +20,6 @@ export default function Contact() {
         <div className="container-max max-w-xl">
           <h1 className="heading-lg mb-2">Contact us</h1>
           <p className="mb-8 text-gray-600 text-sm">Message us about training, software, or placement support.</p>
-
-          <LeadershipPanel variant="card" className="mb-8" />
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <label className="block text-sm font-medium text-gray-900">

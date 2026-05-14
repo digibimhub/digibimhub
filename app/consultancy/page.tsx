@@ -2,7 +2,6 @@ import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
 import StatsStrip from '@/components/StatsStrip'
-import LeadershipPanel from '@/components/LeadershipPanel'
 import {
   placementIntro,
   placementRoles,
@@ -42,7 +41,6 @@ export default function Consultancy() {
               WhatsApp
             </a>
           </div>
-          <LeadershipPanel variant="hero" />
         </div>
       </section>
 
@@ -50,7 +48,6 @@ export default function Consultancy() {
 
       <main className="section-padding bg-white">
         <div className="container-max">
-          <LeadershipPanel variant="card" className="mx-auto mb-10 max-w-2xl" />
           <div className="section-head mx-auto mb-10 max-w-3xl text-center">
             <p className="label-gold">What we offer</p>
             <h2 className="heading-md mt-2">Our placement support includes</h2>

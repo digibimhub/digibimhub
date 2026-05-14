@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import BrandLogo from '@/components/BrandLogo'
-import LeadershipPanel from '@/components/LeadershipPanel'
 
 export default function Footer() {
   return (
@@ -15,7 +14,6 @@ export default function Footer() {
             <p className="mt-4 text-sm leading-relaxed text-gray-600">
               BIM training, Revit add-ons, and career support.
             </p>
-            <LeadershipPanel variant="footer" />
           </div>
           <nav className="flex flex-wrap gap-x-6 gap-y-2 text-sm text-gray-600">
             <Link href="/training" className="hover:text-brand-600">Training</Link>

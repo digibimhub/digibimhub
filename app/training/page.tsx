@@ -3,7 +3,6 @@ import Footer from '@/components/Footer'
 import Link from 'next/link'
 import { courseSummaries } from '@/lib/courses'
 import StatsStrip from '@/components/StatsStrip'
-import LeadershipPanel from '@/components/LeadershipPanel'
 import {
   careerOpportunities,
   softwareCovered,
@@ -40,7 +39,6 @@ export default function Training() {
               WhatsApp
             </a>
           </div>
-          <LeadershipPanel variant="hero" />
         </div>
       </section>
 
@@ -48,7 +46,6 @@ export default function Training() {
 
       <main className="section-padding bg-white">
         <div className="container-max">
-          <LeadershipPanel variant="card" className="mx-auto mb-10 max-w-2xl" />
           <div className="section-head mx-auto mb-10 max-w-3xl text-center">
             <p className="label-gold">Courses</p>
             <h2 className="heading-md mt-2">Choose your BIM course</h2>
