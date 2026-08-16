@@ -18,15 +18,18 @@ export default function Navbar() {
             <BrandLogo variant="nav" />
           </Link>
 
-          <div className="hidden items-center gap-8 md:flex">
+          <div className="hidden items-center gap-6 lg:gap-8 md:flex">
             <Link href="/training" className={linkClass}>
               Training
             </Link>
             <Link href="/software" className={linkClass}>
               Software
             </Link>
-            <Link href="/consultancy" className={linkClass}>
-              Placement
+            <Link href="/software/roi-calculator" className={linkClass}>
+              ROI Calculator
+            </Link>
+            <Link href="/downloads" className={linkClass}>
+              Downloads
             </Link>
             <Link href="/contact" className={linkClass}>
               Contact
@@ -54,8 +57,11 @@ export default function Navbar() {
             <Link href="/software" className={linkClass} onClick={() => setMobileOpen(false)}>
               Software
             </Link>
-            <Link href="/consultancy" className={linkClass} onClick={() => setMobileOpen(false)}>
-              Placement
+            <Link href="/software/roi-calculator" className={linkClass} onClick={() => setMobileOpen(false)}>
+              ROI Calculator
+            </Link>
+            <Link href="/downloads" className={linkClass} onClick={() => setMobileOpen(false)}>
+              Downloads
             </Link>
             <Link href="/contact" className={linkClass} onClick={() => setMobileOpen(false)}>
               Contact

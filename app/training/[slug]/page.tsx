@@ -122,13 +122,9 @@ export default async function CoursePage({ params }: Props) {
           </section>
 
           <div className="rounded-2xl border border-navy/10 bg-[#f0f2f7] p-6 text-center text-sm leading-relaxed text-navy/80">
-            {course.placement}. Fees are not published on this site — see{' '}
-            <Link href="/consultancy" className="font-semibold text-gold underline-offset-2 hover:underline">
-              placement support
-            </Link>{' '}
-            and{' '}
+            Fees are not published on this site —{' '}
             <Link href="/contact" className="font-semibold text-gold underline-offset-2 hover:underline">
-              contact
+              contact us
             </Link>{' '}
             to discuss intake.
           </div>

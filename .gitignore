@@ -12,3 +12,9 @@ build/
 .env.*.example
 .cursor
 .claude
+
+# Local reference assets (not part of the site)
+BIM Soft Add-Ins Enhanced.pptx
+BIM Soft Add-Ins.pdf
+BIM Soft Add-Ins.pptx
+bim_roi_calculator.html

@@ -95,4 +95,16 @@ body {
   .band-intro {
     @apply border-t border-navy/10 bg-[#f0f2f7] py-12;
   }
+
+  .roi-range {
+    @apply h-1.5 cursor-pointer appearance-none rounded-full bg-navy/10 accent-gold;
+  }
+
+  .roi-range::-webkit-slider-thumb {
+    @apply h-4 w-4 cursor-pointer appearance-none rounded-full border-2 border-white bg-gold shadow-[0_0_0_1px_#c49a3c];
+  }
+
+  .roi-range::-moz-range-thumb {
+    @apply h-4 w-4 cursor-pointer rounded-full border-2 border-white bg-gold shadow-[0_0_0_1px_#c49a3c];
+  }
 }

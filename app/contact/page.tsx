@@ -19,7 +19,7 @@ export default function Contact() {
       <main className="section-padding bg-white">
         <div className="container-max max-w-xl">
           <h1 className="heading-lg mb-2">Contact us</h1>
-          <p className="mb-8 text-gray-600 text-sm">Message us about training, software, or placement support.</p>
+          <p className="mb-8 text-gray-600 text-sm">Message us about training or software.</p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <label className="block text-sm font-medium text-gray-900">

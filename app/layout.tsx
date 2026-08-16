@@ -2,8 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 
 export const metadata: Metadata = {
-  title: 'DigiBim Hub — BIM training & placement',
-  description: 'BIM training programs, Revit tooling, and placement support.',
+  title: 'DigiBim Hub — BIM training & Revit software',
+  description: 'BIM training programs and Revit add-on tooling.',
 }
 
 export default function RootLayout({

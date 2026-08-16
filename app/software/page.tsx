@@ -36,6 +36,12 @@ export default function Software() {
             <Link href="/contact" className="btn-primary">
               Discuss a product or build
             </Link>
+            <Link href="/software/roi-calculator" className="btn-secondary">
+              Estimate ROI
+            </Link>
+            <Link href="/downloads" className="btn-secondary">
+              Downloads
+            </Link>
             <a
               href="https://wa.me/919025271848"
               target="_blank"

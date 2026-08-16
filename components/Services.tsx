@@ -11,11 +11,6 @@ const items = [
     title: 'Software solutions',
     text: 'Six Revit add-ons plus custom API development — sheets, QTO, coordination, families, audits, 4D, and integrations.',
   },
-  {
-    href: '/consultancy',
-    title: 'Placement support',
-    text: 'Resume, portfolio, interviews, job updates, and career roadmaps — alongside training, not a job guarantee.',
-  },
 ] as const
 
 export default function Services() {
@@ -24,10 +19,10 @@ export default function Services() {
       <div className="container-max">
         <div className="section-head mx-auto mb-10 max-w-2xl text-center">
           <p className="label-gold">Explore</p>
-          <h2 className="heading-md mt-2">Three ways we work with you</h2>
+          <h2 className="heading-md mt-2">Two ways we work with you</h2>
           <p className="section-head-line" aria-hidden />
         </div>
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-6 md:grid-cols-2 md:max-w-4xl md:mx-auto">
           {items.map(({ href, title, text }) => (
             <Link key={href} href={href} className="card-course-bti flex flex-col p-7">
               <h2 className="text-xl font-bold text-navy">{title}</h2>
