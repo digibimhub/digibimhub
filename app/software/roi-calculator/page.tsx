@@ -3,10 +3,11 @@ import Link from 'next/link'
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import RoiCalculatorExperience from '@/components/RoiCalculatorExperience'
+import { productName } from '@/lib/software-solutions'
 
 export const metadata: Metadata = {
   title: 'ROI Calculator — DigiBim Hub',
-  description: 'Estimate annual time savings and ROI for the Revit Add-In Suite enterprise license.',
+  description: `Estimate annual time savings and ROI for the ${productName} enterprise license.`,
 }
 
 export default function RoiCalculatorPage() {
@@ -22,11 +23,8 @@ export default function RoiCalculatorPage() {
             Share your team size and workflows — we&apos;ll confirm scope, versions, and next steps.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Link href="/contact" className="btn-primary">
-              Contact us
-            </Link>
-            <Link href="/software" className="btn-secondary">
-              View software
+            <Link href="/contact?intent=licensing" className="btn-primary">
+              Licensing enquiry
             </Link>
           </div>
         </div>

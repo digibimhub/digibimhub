@@ -3,6 +3,7 @@
 import Navbar from '@/components/Navbar'
 import Footer from '@/components/Footer'
 import Link from 'next/link'
+import { bundleHeadline, productName } from '@/lib/software-solutions'
 import { useState } from 'react'
 
 type DownloadSuccess = {
@@ -15,6 +16,9 @@ type DownloadError = {
   code: string
   message: string
 }
+
+const inputClass =
+  'mt-1 w-full rounded-lg border border-navy/20 px-3 py-2.5 text-sm text-navy focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold disabled:bg-navy/5'
 
 export default function DownloadsPage() {
   const [email, setEmail] = useState('')
@@ -62,8 +66,11 @@ export default function DownloadsPage() {
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">Licensed software</p>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight sm:text-4xl md:text-5xl">Downloads</h1>
           <p className="mx-auto mt-4 max-w-2xl text-sm leading-relaxed text-white/85 sm:text-base">
+            For organizations with an active {productName} license. {bundleHeadline}.
+          </p>
+          <p className="mx-auto mt-2 max-w-xl text-sm text-white/70">
             Enter your company email to download authorized Revit add-in installers. Access is limited to approved
-            organization domains.
+            organization domains. Use Contact in the menu for licensing access.
           </p>
         </div>
       </section>
@@ -73,7 +80,7 @@ export default function DownloadsPage() {
           {!success ? (
             <>
               <form onSubmit={handleSubmit} className="space-y-4">
-                <label className="block text-sm font-medium text-gray-900">
+                <label className="block text-sm font-medium text-navy">
                   Work email
                   <input
                     type="email"
@@ -82,11 +89,11 @@ export default function DownloadsPage() {
                     value={email}
                     placeholder="you@yourcompany.com"
                     disabled={loading}
-                    className="mt-1 w-full rounded-md border border-gray-300 px-3 py-2 text-sm focus:border-brand-600 focus:outline-none disabled:bg-gray-50"
+                    className={inputClass}
                     onChange={(e) => setEmail(e.target.value)}
                   />
                 </label>
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-navy/60">
                   We use your email domain to verify download access. Personal email providers are not accepted.
                 </p>
                 <button type="submit" disabled={loading} className="btn-primary w-full sm:w-auto disabled:opacity-60">
@@ -105,30 +112,28 @@ export default function DownloadsPage() {
                   <p className="mt-2">{error.message}</p>
                   {error.code === 'not_authorized' || error.code === 'free_mail' ? (
                     <p className="mt-4">
-                      <Link href="/contact" className="font-semibold text-brand-600 underline-offset-2 hover:underline">
-                        Contact us
+                      <Link href="/contact?intent=licensing" className="font-semibold text-gold hover:text-gold-muted">
+                        Request licensing access
                       </Link>{' '}
-                      to request access for your organization.
+                      for your organization.
                     </p>
                   ) : null}
                 </div>
               ) : null}
             </>
           ) : (
-            <div className="rounded-lg border border-green-200 bg-green-50 p-6 text-sm text-green-950">
+            <div className="rounded-xl border border-green-200 bg-green-50 p-6 text-sm text-green-950">
               <p className="text-xs font-semibold uppercase tracking-wider text-green-800">Access granted</p>
-              <p className="mt-3 text-base font-semibold text-gray-900">{success.companyName}</p>
-              <p className="mt-4 text-gray-600">Your download is ready. Keep the link private — it is for authorized use only.</p>
-              <a
-                href={success.downloadUrl}
-                className="btn-primary mt-6 inline-flex"
-                download
-              >
+              <p className="mt-3 text-base font-semibold text-navy">{success.companyName}</p>
+              <p className="mt-4 text-navy/75">
+                Your download is ready. Keep the link private — it is for authorized use only.
+              </p>
+              <a href={success.downloadUrl} className="btn-primary mt-6 inline-flex" download>
                 Download installer
               </a>
               <button
                 type="button"
-                className="mt-4 block text-sm font-medium text-brand-600 hover:underline"
+                className="mt-4 block text-sm font-medium text-gold hover:text-gold-muted"
                 onClick={() => {
                   setSuccess(null)
                   setError(null)
@@ -139,16 +144,16 @@ export default function DownloadsPage() {
             </div>
           )}
 
-          <div className="mt-10 border-t border-gray-200 pt-8 text-sm text-gray-600">
-            <p className="font-semibold text-gray-900">Need help?</p>
+          <div className="mt-10 border-t border-navy/10 pt-8 text-sm text-navy/75">
+            <p className="font-semibold text-navy">Need help?</p>
             <p className="mt-2">
               Email{' '}
-              <a href="mailto:info@digibimhub.com" className="text-brand-600 hover:underline">
+              <a href="mailto:info@digibimhub.com" className="font-medium text-gold hover:text-gold-muted">
                 info@digibimhub.com
               </a>{' '}
               or{' '}
-              <Link href="/contact" className="text-brand-600 hover:underline">
-                contact us
+              <Link href="/contact?intent=licensing" className="font-medium text-gold hover:text-gold-muted">
+                request licensing access
               </Link>{' '}
               if your organization should have access.
             </p>

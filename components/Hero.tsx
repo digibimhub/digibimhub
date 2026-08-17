@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import StatsStrip from '@/components/StatsStrip'
+import { bundleHeadline, productName } from '@/lib/software-solutions'
 
 export default function Hero() {
   return (
@@ -13,18 +14,21 @@ export default function Hero() {
           </h1>
           <p className="mx-auto mt-3 max-w-2xl text-base text-white/85 sm:text-lg">
             Six courses covering foundations, architectural, structural, and MEP modeling, plus coordination and advanced
-            BIM — alongside Revit add-ons. Structured like a professional course catalogue.
+            BIM. We also offer {productName} for enterprise teams.
           </p>
+          <p className="mx-auto mt-2 max-w-xl text-sm text-white/70">{bundleHeadline}</p>
           <p className="mx-auto mt-2 max-w-xl text-sm font-medium text-gold/95">
             If not now, then when — book a conversation and we&apos;ll map the right track.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
-            <Link href="/training" className="btn-primary">
-              View BIM courses
-            </Link>
-            <Link href="/contact" className="btn-secondary">
-              Talk to us
-            </Link>
+            <a
+              href="https://wa.me/919025271848"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+            >
+              WhatsApp
+            </a>
           </div>
         </div>
       </section>

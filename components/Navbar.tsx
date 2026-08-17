@@ -2,7 +2,8 @@
 
 import Link from 'next/link'
 import { useState } from 'react'
-import BrandLogo from '@/components/BrandLogo'
+import BrandLockup from '@/components/BrandLockup'
+import { productName } from '@/lib/software-solutions'
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false)
@@ -12,10 +13,10 @@ export default function Navbar() {
   return (
     <nav className="sticky top-0 z-50 border-b border-gold/20 bg-navy shadow-card">
       <div className="container-max">
-        <div className="flex h-16 items-center justify-between gap-4">
-          <Link href="/" className="flex shrink-0 items-center text-white">
+        <div className="flex min-h-16 items-center justify-between gap-4 py-2">
+          <Link href="/" className="my-1 min-w-0 shrink transition hover:opacity-95">
             <span className="sr-only">DigiBim Hub — home</span>
-            <BrandLogo variant="nav" />
+            <BrandLockup size="nav" />
           </Link>
 
           <div className="hidden items-center gap-6 lg:gap-8 md:flex">
@@ -23,7 +24,7 @@ export default function Navbar() {
               Training
             </Link>
             <Link href="/software" className={linkClass}>
-              Software
+              {productName}
             </Link>
             <Link href="/software/roi-calculator" className={linkClass}>
               ROI Calculator
@@ -55,7 +56,7 @@ export default function Navbar() {
               Training
             </Link>
             <Link href="/software" className={linkClass} onClick={() => setMobileOpen(false)}>
-              Software
+              {productName}
             </Link>
             <Link href="/software/roi-calculator" className={linkClass} onClick={() => setMobileOpen(false)}>
               ROI Calculator

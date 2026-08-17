@@ -33,12 +33,14 @@ export default async function CoursePage({ params }: Props) {
           <h1 className="mt-2 text-2xl font-extrabold leading-tight sm:text-3xl md:text-4xl">{course.title}</h1>
           <p className="mt-4 text-sm leading-relaxed text-white/85 sm:text-base">{course.tagline}</p>
           <div className="mt-6 flex flex-wrap gap-3">
-            <Link href="/contact" className="btn-primary">
-              Enquire / enroll
-            </Link>
-            <Link href="/training" className="btn-secondary">
-              All courses
-            </Link>
+            <a
+              href="https://wa.me/919025271848"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary"
+            >
+              WhatsApp
+            </a>
           </div>
         </div>
       </section>
@@ -130,9 +132,6 @@ export default async function CoursePage({ params }: Props) {
           </div>
 
           <div className="flex flex-wrap justify-center gap-3 pb-4">
-            <Link href="/contact" className="btn-primary">
-              Enquire / enroll
-            </Link>
             <a
               href="https://wa.me/919025271848"
               target="_blank"
@@ -151,11 +150,6 @@ export default async function CoursePage({ params }: Props) {
           <p className="mx-auto mt-2 max-w-lg text-sm text-white/75">
             Tell us your background and goals — we&apos;ll help you pick the right course among the six tracks.
           </p>
-          <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Link href="/contact" className="btn-primary">
-              Talk to us
-            </Link>
-          </div>
         </div>
       </section>
 

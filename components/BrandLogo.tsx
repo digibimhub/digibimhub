@@ -12,15 +12,21 @@ type Props = {
  */
 export default function BrandLogo({ className = '', variant = 'nav' }: Props) {
   if (variant === 'footer') {
+    const defaultSize =
+      'h-28 w-auto max-w-full sm:h-32 md:h-36 lg:h-40 xl:h-44 xl:max-w-[min(100%,960px)]'
     return (
       <Image
         src="/logo.png"
         alt="DigiBim Hub — Learn, Lead, Innovate"
         width={1600}
         height={727}
-        className={`h-28 w-auto max-w-full object-contain object-left sm:h-32 md:h-36 lg:h-40 xl:h-44 xl:max-w-[min(100%,960px)] ${className}`}
+        className={`object-contain object-left ${className || defaultSize}`}
         priority
-        sizes="(max-width: 640px) 92vw, (max-width: 1024px) 640px, (max-width: 1280px) 760px, 840px"
+        sizes={
+          className
+            ? '(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 480px'
+            : '(max-width: 640px) 92vw, (max-width: 1024px) 640px, (max-width: 1280px) 760px, 840px'
+        }
       />
     )
   }

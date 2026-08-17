@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { bundleHeadline, productName, suiteTagline } from '@/lib/software-solutions'
 
 const items = [
   {
@@ -8,8 +9,8 @@ const items = [
   },
   {
     href: '/software',
-    title: 'Software solutions',
-    text: 'Six Revit add-ons plus custom API development — sheets, QTO, coordination, families, audits, 4D, and integrations.',
+    title: productName,
+    text: `${bundleHeadline}. ${suiteTagline}`,
   },
 ] as const
 
