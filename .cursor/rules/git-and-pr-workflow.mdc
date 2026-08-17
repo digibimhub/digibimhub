@@ -1,0 +1,10 @@
+---
+description: Route to AGENTS.md — single source of truth for all agents
+alwaysApply: true
+---
+
+# Agent instructions
+
+**Read and follow [AGENTS.md](../../AGENTS.md).** Do not duplicate rules here.
+
+Key reminder: do **not** use `gh`; use git only and share the PR compare URL after push.
