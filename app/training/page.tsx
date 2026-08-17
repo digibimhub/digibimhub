@@ -27,9 +27,6 @@ export default function Training() {
             are not quoted on this site.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
-            <Link href="/contact" className="btn-primary">
-              Apply / enquire
-            </Link>
             <a
               href="https://wa.me/919025271848"
               target="_blank"
@@ -177,9 +174,6 @@ export default function Training() {
             format. Fees are confirmed in conversation, not on the website.
           </p>
           <div className="mt-6 flex flex-wrap justify-center gap-3">
-            <Link href="/contact" className="btn-primary">
-              Get in touch
-            </Link>
             <a
               href="https://wa.me/919025271848"
               target="_blank"

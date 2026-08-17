@@ -1,62 +1,27 @@
 import Link from 'next/link'
-import BrandLogo from '@/components/BrandLogo'
-
-const footerLinks = [
-  { href: '/training', label: 'Training' },
-  { href: '/software', label: 'Software' },
-  { href: '/software/roi-calculator', label: 'ROI Calculator' },
-  { href: '/downloads', label: 'Downloads' },
-  { href: '/contact', label: 'Contact' },
-] as const
+import BrandLockup from '@/components/BrandLockup'
 
 export default function Footer() {
+  const year = new Date().getFullYear()
+
   return (
-    <footer className="border-t border-gray-200 bg-gray-50">
-      <div className="container-max py-10">
-        <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-3 lg:gap-12">
-          <div className="max-w-md">
-            <Link href="/" className="inline-block shrink-0">
-              <span className="sr-only">DigiBim Hub — home</span>
-              <BrandLogo variant="footer" />
-            </Link>
-            <p className="mt-4 text-sm leading-relaxed text-gray-600">
-              BIM training and Revit add-ons.
-            </p>
-          </div>
+    <footer className="border-t border-gold/20 bg-navy text-white">
+      <div className="container-max flex flex-col items-center gap-5 py-8 sm:flex-row sm:items-center sm:justify-between sm:gap-8 sm:py-6">
+        <Link href="/" className="flex justify-center sm:justify-start min-w-0 flex-1 transition hover:opacity-90">
+          <span className="sr-only">DigiBim Hub — home</span>
+          <BrandLockup size="footer" />
+        </Link>
 
-          <div>
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-gray-900">Quick links</h2>
-            <nav className="mt-4 flex flex-col gap-2.5 text-sm text-gray-600">
-              {footerLinks.map((link) => (
-                <Link key={link.href} href={link.href} className="hover:text-brand-600">
-                  {link.label}
-                </Link>
-              ))}
-            </nav>
-          </div>
-
-          <div className="max-w-xs sm:col-span-2 lg:col-span-1">
-            <h2 className="text-xs font-semibold uppercase tracking-wider text-gray-900">Contact</h2>
-            <div className="mt-4 text-sm text-gray-600">
-              <p className="font-medium text-gray-900">DIGIBIM HUB PRIVATE LIMITED</p>
-              <p className="mt-2 leading-relaxed">
-                10B/3, Gandhi Nagar 10th Street, Tiruvannamalai, Tamil Nadu 606601, India
-              </p>
-              <p className="mt-3">
-                <a href="mailto:info@digibimhub.com" className="hover:text-brand-600">
-                  info@digibimhub.com
-                </a>
-              </p>
-              <p className="mt-2">
-                <a href="tel:+919025271848" className="hover:text-brand-600">
-                  +91 90252 71848
-                </a>{' '}
-                (phone & WhatsApp)
-              </p>
-            </div>
-          </div>
+        <div className="flex shrink-0 flex-col items-center gap-1.5 text-center text-xs leading-relaxed text-white/65 sm:items-end sm:text-right">
+          <p>
+            © {year} DigiBim Hub. All rights reserved.
+          </p>
+          <p>
+            <a href="mailto:info@digibimhub.com" className="text-white/80 transition hover:text-gold">
+              info@digibimhub.com
+            </a>
+          </p>
         </div>
-        <p className="mt-8 text-center text-xs text-gray-500">© {new Date().getFullYear()} DigiBim Hub</p>
       </div>
     </footer>
   )

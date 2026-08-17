@@ -19,6 +19,7 @@ import {
   type Currency,
   type PresetKey,
 } from '@/lib/roi-calculator'
+import { revitAddons, productName } from '@/lib/software-solutions'
 
 const currencies: Currency[] = ['INR', 'USD', 'AED']
 
@@ -81,7 +82,7 @@ function SliderField({
             if (!Number.isNaN(parsed)) onChange(parsed)
           }}
           onBlur={(e) => commitValue(e.target.value)}
-          className="w-full shrink-0 rounded-md border border-navy/15 px-2.5 py-1 text-right font-mono text-sm font-bold text-navy focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold sm:w-28"
+          className="w-full shrink-0 rounded-md border border-navy/15 px-2.5 py-1 text-right text-sm font-bold tabular-nums text-navy focus:border-gold focus:outline-none focus:ring-1 focus:ring-gold sm:w-28"
         />
       </div>
       <input
@@ -100,7 +101,7 @@ function SliderField({
         aria-valuemax={max}
         aria-valuenow={value}
       />
-      <div className="mt-1 flex justify-between font-mono text-[10px] text-navy/40">
+      <div className="mt-1 flex justify-between text-[10px] tabular-nums text-navy/40">
         <span>{min}</span>
         <span>{max}</span>
       </div>
@@ -223,7 +224,7 @@ export default function RoiCalculator({ currency, onCurrencyChange }: RoiCalcula
                 key={key}
                 type="button"
                 onClick={() => applyPreset(key)}
-                className={`rounded-md border px-3 py-1.5 font-mono text-xs transition ${
+                className={`rounded-md border px-3 py-1.5 text-xs font-semibold transition ${
                   activePreset === key
                     ? 'border-navy bg-navy text-white'
                     : 'border-navy/15 bg-[#f8f9fb] text-navy/60 hover:border-navy/40 hover:text-navy'
@@ -243,8 +244,8 @@ export default function RoiCalculator({ currency, onCurrencyChange }: RoiCalcula
         </div>
 
         <div className="my-6 border-b border-dashed border-white/15 pb-6 text-center">
-          <p className="font-mono text-xs uppercase tracking-widest text-white/50">ROI</p>
-          <p className="mt-2 whitespace-nowrap font-mono text-5xl font-bold leading-none text-gold">
+          <p className="text-xs font-semibold uppercase tracking-wider text-white/50">ROI</p>
+          <p className="mt-2 whitespace-nowrap text-5xl font-bold leading-none tabular-nums text-gold">
             {formatNumber(result.roiPercent, 'en-US')}
             <span className="text-2xl">%</span>
           </p>
@@ -270,7 +271,7 @@ export default function RoiCalculator({ currency, onCurrencyChange }: RoiCalcula
             >
               <dt className="min-w-0 leading-snug text-white/65">{row.label}</dt>
               <dd
-                className={`whitespace-nowrap text-right font-mono text-sm font-bold ${
+                className={`whitespace-nowrap text-right text-sm font-bold tabular-nums ${
                   row.positive ? 'text-emerald-300' : row.negative ? 'text-red-300' : 'text-white'
                 }`}
               >
@@ -281,9 +282,9 @@ export default function RoiCalculator({ currency, onCurrencyChange }: RoiCalcula
         </dl>
 
         <div className="mt-6">
-          <div className="mb-2 flex justify-between gap-3 font-mono text-[10px] uppercase tracking-wide text-white/50">
+          <div className="mb-2 flex justify-between gap-3 text-[10px] font-semibold uppercase tracking-wide text-white/50">
             <span className="min-w-0">Payback within year 1</span>
-            <span className="shrink-0 whitespace-nowrap">{Math.round(result.paybackBarPercent)}%</span>
+            <span className="shrink-0 whitespace-nowrap tabular-nums">{Math.round(result.paybackBarPercent)}%</span>
           </div>
           <div className="h-2 overflow-hidden rounded-full bg-white/10">
             <div
@@ -301,21 +302,28 @@ export function LicenseStrip({ currency }: { currency: Currency }) {
   const fee = currencyConfig[currency].licenseFee
 
   return (
-    <div className="mt-8 grid overflow-hidden rounded-xl border border-white/10 bg-white/5 sm:grid-cols-3 sm:items-stretch">
-      <div className="border-b border-white/10 px-5 py-4 sm:border-b-0 sm:border-r">
-        <p className="font-mono text-[10px] uppercase tracking-wider text-white/50">License type</p>
+    <div className="mt-8 grid overflow-hidden rounded-xl border border-white/10 bg-white/5 sm:grid-cols-2 lg:grid-cols-4 sm:items-stretch">
+      <div className="border-b border-white/10 px-5 py-4 lg:border-b-0 lg:border-r">
+        <p className="text-[10px] font-semibold uppercase tracking-wider text-white/50">License type</p>
         <p className="mt-1 text-balance text-sm font-bold leading-snug text-white">
           Enterprise · <span className="text-gold">Unlimited users</span>
         </p>
       </div>
       <div className="border-b border-white/10 px-5 py-4 sm:border-b-0 sm:border-r">
-        <p className="font-mono text-[10px] uppercase tracking-wider text-white/50">Annual fee</p>
-        <p className="mt-1 text-sm font-bold leading-snug text-white">
+        <p className="text-[10px] font-semibold uppercase tracking-wider text-white/50">Product</p>
+        <p className="mt-1 text-balance text-sm font-bold leading-snug text-white">
+          <span className="text-gold">{productName}</span>
+          <span className="text-white/80"> · all {revitAddons.length} add-ins</span>
+        </p>
+      </div>
+      <div className="border-b border-white/10 px-5 py-4 lg:border-b-0 lg:border-r">
+        <p className="text-[10px] font-semibold uppercase tracking-wider text-white/50">Annual fee</p>
+        <p className="mt-1 text-sm font-bold leading-snug tabular-nums text-white">
           <span className="whitespace-nowrap text-gold">{formatMoney(fee, currency)}</span> / yr
         </p>
       </div>
       <div className="px-5 py-4">
-        <p className="font-mono text-[10px] uppercase tracking-wider text-white/50">Version coverage</p>
+        <p className="text-[10px] font-semibold uppercase tracking-wider text-white/50">Version coverage</p>
         <p className="mt-1 text-balance text-sm font-bold leading-snug text-white">
           R2022–R2026 · <span className="text-gold">free R2027 upgrade</span>
         </p>
