@@ -2,6 +2,8 @@
 
 Fully static marketing site: BIM **training**, Revit **software** add-ons, and **placement** support. No database or server APIs.
 
+> **AI agents:** see [AGENTS.md](./AGENTS.md) for git workflow, commands, and project conventions.
+
 ## Run locally
 
 **Development (hot reload):**

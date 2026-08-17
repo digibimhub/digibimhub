@@ -24,7 +24,9 @@ yarn-error.log*
 Thumbs.db
 *.swp
 *.swo
-.cursor/
+.cursor/*
+!.cursor/rules/
+!.cursor/rules/**
 .claude/
 .idea/
 .vscode/
