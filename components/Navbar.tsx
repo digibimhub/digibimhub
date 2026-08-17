@@ -14,9 +14,9 @@ export default function Navbar() {
     <nav className="sticky top-0 z-50 border-b border-gold/20 bg-navy shadow-card">
       <div className="container-max">
         <div className="flex min-h-16 items-center justify-between gap-4 py-2">
-          <Link href="/" className="my-1 min-w-0 shrink transition hover:opacity-95">
+          <Link href="/" className="shrink transition hover:opacity-90">
             <span className="sr-only">DigiBim Hub — home</span>
-            <BrandLockup size="nav" />
+            <BrandLockup variant="mark" />
           </Link>
 
           <div className="hidden items-center gap-6 lg:gap-8 md:flex">
